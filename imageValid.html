@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Form</h2>
+
+    <label>Name:</label>
+    <input type="text" id="name" onchange="valid(event)">
+    <span id="errorName" style="color: red;"></span><br><br>
+
+    <label>Address:</label>
+    <input type="text" id="address" onchange="valid(event)">
+    <span id="errorAddress" style="color: red;"></span><br><br>
+
+    <label>City:</label>
+    <input type="text" id="city" onchange="valid(event)">
+    <span id="errorCity" style="color: red;"></span><br><br>
+
+    <label>Password:</label>
+    <input type="password" id="password" onchange="valid(event)">
+    <span id="errorPassword" style="color: red;"></span><br><br>
+
+    <label>Phone No:</label>
+    <input type="text" id="phone" onchange="valid(event)">
+    <span id="errorPhone" style="color: red;"></span><br><br>
+
+    <label>Email:</label>
+    <input type="text" id="email" onchange="valid(event)">
+    <span id="errorEmail" style="color: red;"></span><br><br>
+
+    <label>Age:</label>
+    <input type="text" id="age" onchange="valid(event)">
+    <span id="errorAge" style="color: red;"></span><br><br>
+
+    <label>Choose Image  </label>
+    <input type="file" onchange="imageFound(event)"><br>
+    <img id="preview" src="https://cdn.dribbble.com/userupload/23264824/file/original-9c32cc4e26099427aad3ecc080dd1770.png?resize=400x0" width="150" height="150" alt="Image Preview">
+
+    <script>
+        function valid(event) {
+            const input = event.target;
+            const id = input.id;
+            const value = input.value.trim();
+            let errorSpan = document.getElementById('error' + id.charAt(0).toUpperCase() + id.slice(1));
+            errorSpan.textContent = '';
+
+            switch (id) {
+                case 'name':
+                    if (value === '') {
+                        errorSpan.textContent = 'Please enter name';
+                    } else if (value.length < 3) {
+                        errorSpan.textContent = 'Name is too short';
+                    }
+                    break;
+
+                case 'address':
+                    if (value === '') {
+                        errorSpan.textContent = 'Please enter address';
+                    } else if (value.length < 3) {
+                        errorSpan.textContent = 'Address is too short';
+                    }
+                    break;
+
+                case 'city':
+                    if (value === '') {
+                        errorSpan.textContent = 'Please enter city';
+                    } else if (value.length < 3) {
+                        errorSpan.textContent = 'City name is too short';
+                    }
+                    break;
+
+                case 'password':
+                    if (value.length < 6) {
+                        errorSpan.textContent = 'Password must be at least 6 characters';
+                    }
+                    break;
+
+                case 'phone':
+                    if (!/^[0-9]{10}$/.test(value)) {
+                        errorSpan.textContent = 'Phone number must be 10 digits';
+                    }
+                    break;
+
+                case 'email':
+                    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+                        errorSpan.textContent = 'Invalid email format';
+                    }
+                    break;
+
+                case 'age':
+                    const age = Number(value);
+                    if (value === '' || age < 1 || age > 120 || isNaN(age)) {
+                        errorSpan.textContent = 'Enter a valid age between 1 and 120';
+                    }
+                    break;
+            }
+        }
+    </script>
+    <script>
+        var str = "have a nice day";
+        var name = "";
+        var splitStr = str.trim().split(" ");
+
+        for (var i = 0; i < splitStr.length; i++) {
+            var name1 = splitStr[i].charAt(0).toUpperCase();
+            var name2 = splitStr[i].slice(1);
+            var fullName = name1 + name2 + " ";
+            name += fullName;
+        }
+
+        console.log(name.trim());
+    </script>
+    <script>
+        var sentence = "[[Hii]] Cathrin";
+        var newSentence = sentence.replace("[[Hii]]", "Hello");
+        console.log("After replace:", newSentence);
+
+        var fruits = ["Apple", "Banana"];
+        fruits.push("Orange");
+        console.log("push:", fruits);
+
+        fruits.pop();
+        console.log("pop:", fruits);
+        fruits.shift();
+        console.log("After shift:", fruits);
+
+        fruits.unshift("Mango");
+        console.log("After unshift:", fruits);
+    </script>
+
+
+</body>
+<script>
+    function imageFound(event) {
+        let fileInput = event.target.files[0];
+        console.log("fileInput=", fileInput.type);
+        let splitText = fileInput.type.split("/");
+        console.log("splitText=", splitText);
+        if (splitText[1] == "jpg" || splitText[1] == "png") {
+            let imgURL = URL.createObjectURL(fileInput);
+            document.getElementById("preview").src = imgURL;
+        
+        } else {
+            alert("invalid image");
+        }
+    }
+</script>
+
+</script>
+
+</html>

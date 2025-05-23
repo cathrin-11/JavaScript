@@ -1,0 +1,390 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Order Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 30px;
+        }
+
+        .order-form {
+            background-color: #fff;
+            max-width: 400px;
+            margin: auto;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 12px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        img {
+            width: 100%;
+            max-width: 300px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        .error {
+            color: red;
+            font-size: 13px;
+            text-align: left;
+            margin-bottom: 10px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        .product-info {
+            background: #eef6ff;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 15px;
+            text-align: left;
+        }
+
+        button {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="order-form">
+        <h2>Place Your Order</h2>
+
+        <img id="productImage" src="" alt="Product Image">
+
+        <div class="product-info">
+            <p><strong>Product:</strong> <span id="productName"></span></p>
+            <p><strong>Quantity:</strong> <span id="productQuantity"></span></p>
+            <p><strong>Total Price:</strong> ₹<span id="productTotal"></span></p>
+        </div>
+
+        <form id="orderForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" onchange="validateName()" />
+            <div id="nameError" class="error"></div>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" onchange="validatePhone()" />
+            <div id="phoneError" class="error"></div>
+
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" rows="3" onchange="validateAddress()"></textarea>
+            <div id="addressError" class="error"></div>
+
+            <button type="submit">Submit Order</button>
+        </form>
+    </div>
+
+    <script>
+        
+        const productName = localStorage.getItem("selectedProduct") || "Unknown";
+        const productQuantity = localStorage.getItem("orderQuantity") || "1";
+        const productTotal = localStorage.getItem("orderTotalPrice") || "0.00";
+        const productImageSrc = localStorage.getItem("selectedImage") || "";
+
+        document.getElementById('productName').textContent = productName;
+        document.getElementById('productQuantity').textContent = productQuantity;
+        document.getElementById('productTotal').textContent = productTotal;
+
+        const productImage = document.getElementById('productImage');
+        if(productImageSrc) {
+            productImage.src = productImageSrc;
+        } else {
+            productImage.style.display = 'none';
+        }
+
+     
+        function validateName() {
+            const name = document.getElementById('name').value.trim();
+            const nameError = document.getElementById('nameError');
+            if (name === "") {
+                nameError.textContent = "Name is required.";
+                return false;
+            }
+            nameError.textContent = "";
+            return true;
+        }
+
+        function validatePhone() {
+            const phone = document.getElementById('phone').value.trim();
+            const phoneError = document.getElementById('phoneError');
+            if (!/^\d{10}$/.test(phone)) {
+                phoneError.textContent = "Enter a valid 10-digit phone number.";
+                return false;
+            }
+            phoneError.textContent = "";
+            return true;
+        }
+
+        function validateAddress() {
+            const address = document.getElementById('address').value.trim();
+            const addressError = document.getElementById('addressError');
+            if (address === "") {
+                addressError.textContent = "Address is required.";
+                return false;
+            }
+            addressError.textContent = "";
+            return true;
+        }
+
+     
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const isNameValid = validateName();
+            const isPhoneValid = validatePhone();
+            const isAddressValid = validateAddress();
+
+            if (isNameValid && isPhoneValid && isAddressValid) {
+                alert("Order placed successfully!");
+                window.location.href = "task.html";
+            }
+        });
+    </script>
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Order Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 30px;
+        }
+
+        .order-form {
+            background-color: #fff;
+            max-width: 400px;
+            margin: auto;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 12px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        img {
+            width: 100%;
+            max-width: 300px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        .error {
+            color: red;
+            font-size: 13px;
+            text-align: left;
+            margin-bottom: 10px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        .product-info {
+            background: #eef6ff;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 15px;
+            text-align: left;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="order-form">
+        <h2>Place Your Order</h2>
+
+        <img id="productImage" src="" alt="Product Image">
+
+        <div class="product-info">
+            <p><strong>Product:</strong> <span id="productName"></span></p>
+            <p><strong>Quantity:</strong> <span id="productQuantity"></span></p>
+            <p><strong>Total Price:</strong> ₹<span id="productTotal"></span></p>
+        </div>
+
+        <form id="orderForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" onkeydown="validateName()" />
+            <div id="nameError" class="error"></div>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" onkeyup="validatePhone()" />
+            <div id="phoneError" class="error"></div>
+
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" rows="3" onkeypress="validateAddress()"></textarea>
+            <div id="addressError" class="error"></div>
+
+            <input type="submit" value="Submit Order" onclick="checkForm(event)" />
+        </form>
+    </div>
+
+    <script>
+        const productName = localStorage.getItem("selectedProduct") || "Unknown";
+        const productQuantity = localStorage.getItem("orderQuantity") || "1";
+        const productTotal = localStorage.getItem("orderTotalPrice") || "0.00";
+        const productImageSrc = localStorage.getItem("selectedImage") || "";
+
+        document.getElementById('productName').textContent = productName;
+        document.getElementById('productQuantity').textContent = productQuantity;
+        document.getElementById('productTotal').textContent = productTotal;
+
+        const productImage = document.getElementById('productImage');
+        if (productImageSrc) {
+            productImage.src = productImageSrc;
+        } else {
+            productImage.style.display = 'none';
+        }
+
+        
+        function validateName() {
+            const name = document.getElementById('name').value.trim();
+            const nameError = document.getElementById('nameError');
+            if (name === "") {
+                nameError.textContent = "Name is required.";
+                return false;
+            }
+            nameError.textContent = "";
+            return true;
+        }
+        const phoneRegex = /^\d{10}$/;
+
+        function validatePhone() {
+            const phone = document.getElementById('phone').value.trim();
+            const phoneError = document.getElementById('phoneError');
+            if (!phoneRegex.test(phone)) {
+                phoneError.textContent = "Enter a valid 10-digit phone number.";
+                return false;
+            }
+            phoneError.textContent = "";
+            return true;
+        }
+
+        function validateAddress() {
+            const address = document.getElementById('address').value.trim();
+            const addressError = document.getElementById('addressError');
+
+            if (address === "") {
+                addressError.textContent = "Address is required.";
+                return false;
+            } else if (address.length < 5) {
+                addressError.textContent = "Address must be at least 5 characters long.";
+                return false;
+            }
+
+            addressError.textContent = "";
+            return true;
+        }
+
+        function checkForm(event) {
+            event.preventDefault();
+
+            const isNameValid = validateName();
+            const isPhoneValid = validatePhone();
+            const isAddressValid = validateAddress();
+
+            if (isNameValid && isPhoneValid && isAddressValid) {
+                const name = document.getElementById('name').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                const address = document.getElementById('address').value.trim();
+
+                localStorage.setItem("customerName", name);
+                localStorage.setItem("customerPhone", phone);
+                localStorage.setItem("customerAddress", address);
+
+                alert("Order placed successfully!");
+                window.location.href = "task.html";
+            }
+        }
+    </script>
+
+</body>
+</html>
+

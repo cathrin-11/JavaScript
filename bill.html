@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Billing Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 30px;
+        }
+
+        .bill {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        p {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        img {
+            margin-top: 15px;
+            border-radius: 5px;
+        }
+
+        .quantity-controls {
+            margin-top: 15px;
+        }
+
+        button {
+            padding: 5px 10px;
+            margin: 0 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        #quantity {
+            font-size: 16px;
+            margin: 0 10px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 10px 20px;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar ul li {
+            margin-left: 20px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar ul li a:hover {
+            color: #ffcc00;
+        }
+
+        #placeOrderBtn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        #placeOrderBtn:hover {
+            background-color: #45a049;
+        }
+
+        #errorMsg {
+            color: red;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="logo">Mobile Zone</div>
+    <ul>
+      <li><a href="task.html">Home</a></li>
+      <li><a href="bill.html">Cart</a></li>
+    </ul>
+  </div>
+
+  <div class="bill">
+    <h2>Order Bill</h2>
+    <p><strong>Product:</strong> <span id="billProduct"></span></p>
+    <p><strong>Unit Price:</strong> ₹<span id="billPrice"></span></p>
+
+    <div class="quantity-controls">
+      <button onclick="updateQuantity(-1)">-</button>
+      <span id="quantity">0</span>
+      <button onclick="updateQuantity(1)">+</button>
+    </div>
+
+    <p><strong>Total Price:</strong> ₹<span id="totalPrice">0.00</span></p>
+
+    <img id="billImage" src="" alt="Product Image" width="200">
+
+    <button id="placeOrderBtn">Place Order</button>
+    <div id="errorMsg">Please select at least 1 item to place the order.</div>
+  </div>
+
+  <script>
+    const billProduct = document.getElementById("billProduct");
+    const billPrice = document.getElementById("billPrice");
+    const billImage = document.getElementById("billImage");
+    const totalPriceSpan = document.getElementById("totalPrice");
+    const quantitySpan = document.getElementById("quantity");
+    const errorMsg = document.getElementById("errorMsg");
+    const placeOrderBtn = document.getElementById("placeOrderBtn");
+
+    const unitPriceRaw = localStorage.getItem("selectedPrice");
+    const unitPrice = unitPriceRaw ? parseFloat(unitPriceRaw.replace(/[^\d.]/g, '')) : 0;
+
+    let quantity = 0;
+    billProduct.textContent = localStorage.getItem("selectedProduct") || "Unknown";
+    billPrice.textContent = unitPrice.toFixed(2);
+    billImage.src = localStorage.getItem("selectedImage") || "";
+
+    function updateQuantity(change) {
+      quantity += change;
+      if (quantity < 0) quantity = 0;
+
+      quantitySpan.textContent = quantity;
+      const total = unitPrice * quantity;
+      totalPriceSpan.textContent = total.toFixed(2);
+      errorMsg.style.display = "none";
+    }
+
+    placeOrderBtn.addEventListener('click', () => {
+      if (quantity === 0) {
+        errorMsg.style.display = "block";
+        return;
+      }
+
+      localStorage.setItem("orderQuantity", quantity);
+      localStorage.setItem("orderTotalPrice", totalPriceSpan.textContent);
+      errorMsg.style.display = "none";
+      window.location.href = 'order.html';
+    });
+  </script>
+
+</body>
+</html>

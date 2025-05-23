@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>INTERNSHIP</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h2>Form</h2>
+
+    <label>Name:</label>
+    <input type="text" id="name" onchange="valid(event)">
+    <span id="errorName" style="color: red;"></span><br><br>
+
+    <label>Address:</label>
+    <input type="text" id="address" onchange="valid(event)">
+    <span id="errorAddress" style="color: red;"></span><br><br>
+
+    <label>City:</label>
+    <input type="text" id="city" onchange="valid(event)">
+    <span id="errorCity" style="color: red;"></span><br><br>
+
+    <label>Password:</label>
+    <input type="password" id="password" onchange="valid(event)">
+    <span id="errorPassword" style="color: red;"></span><br><br>
+
+    <label>Phone No:</label>
+    <input type="text" id="phone" onchange="valid(event)">
+    <span id="errorPhone" style="color: red;"></span><br><br>
+
+    <label>Email:</label>
+    <input type="text" id="email" onchange="valid(event)">
+    <span id="errorEmail" style="color: red;"></span><br><br>
+
+    <label>Age:</label>
+    <input type="text" id="age" onchange="valid(event)">
+    <span id="errorAge" style="color: red;"></span><br><br>
+
+    <a href="next.html">NEXT</a>
+
+    <script>
+        function valid(event) {
+            const input = event.target;
+            const id = input.id;
+            const value = input.value.trim();
+            let errorSpan = document.getElementById('error' + id.charAt(0).toUpperCase() + id.slice(1));
+            errorSpan.textContent = '';
+
+            switch (id) {
+                case 'name':
+                    if (value === '') {
+                        errorSpan.textContent = 'Please enter name';
+                    } else if (value.length < 3) {
+                        errorSpan.textContent = 'Name is too short';
+                    }else {
+        localStorage.setItem("name", value); 
+    }
+                    break;
+
+                case 'address':
+                    if (value === '') {
+                        errorSpan.textContent = 'Please enter address';
+                    } else if (value.length < 3) {
+                        errorSpan.textContent = 'Address is too short';
+                    }
+                    break;
+
+                case 'city':
+                    if (value === '') {
+                        errorSpan.textContent = 'Please enter city';
+                    } else if (value.length < 3) {
+                        errorSpan.textContent = 'City name is too short';
+                    }
+                    break;
+
+                case 'password':
+                    if (value.length < 6) {
+                        errorSpan.textContent = 'Password must be at least 6 characters';
+                    }
+                    break;
+
+                case 'phone':
+                    if (!/^[0-9]{10}$/.test(value)) {
+                        errorSpan.textContent = 'Phone number must be 10 digits';
+                    }
+                    break;
+
+                case 'email':
+                    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+                        errorSpan.textContent = 'Invalid email format';
+                    }
+                    break;
+
+                case 'age':
+                    const age = Number(value);
+                    if (value === '' || age < 1 || age > 120 || isNaN(age)) {
+                        errorSpan.textContent = 'Enter a valid age between 1 and 120';
+                    }
+                    break;
+            }
+        }
+        localStorage.setItem("name", name);
+    </script>
+</body>
+
+</html>

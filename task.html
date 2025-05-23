@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mobile Zone</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <body>
+
+        <div class="navbar">
+            <div class="logo">Mobile Zone</div>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="bill.html">Cart</a></li>
+            </ul>
+        </div>
+
+        <div class="container">
+
+            <div class="card">
+                <img src="https://m.media-amazon.com/images/I/81ZSn2rk9WL._SX679_.jpg" alt="Samsung Galaxy M14">
+                <div class="card-body">
+                    <h3>Samsung Galaxy M14</h3>
+                    <p class="price">₹11,490</p>
+                    <p>6.6'' Display | 6000mAh Battery | 5G</p>
+                    <button onclick="buyNow('Samsung Galaxy M14', '₹11,490')">Buy Now</button>
+
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://m.media-amazon.com/images/I/71dEY4Neo3L._SX679_.jpg" alt="Realme Narzo N55">
+                <div class="card-body">
+                    <h3>Realme Narzo N55</h3>
+                    <p class="price">₹10,499</p>
+                    <p>64MP AI Camera | 5000mAh Battery</p>
+                    <button onclick="buyNow('Realme Narzo N55', '₹10,499')">Buy Now</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/mobile/u/t/5/note-12-mzb0e2kin-redmi-original-imagz62rkfazphz2.jpeg?q=70&crop=false"
+                    alt="Redmi Note 12">
+                <div class="card-body">
+                    <h3>Redmi Note 12</h3>
+                    <p class="price">₹13,999</p>
+                    <p>Snapdragon 685 | AMOLED Display</p>
+                    <button onclick="buyNow('Redmi Note 12', '₹13,999')">Buy Now</button>
+
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://m.media-amazon.com/images/I/41hmUyFtwdL._SX300_SY300_QL70_FMwebp_.jpg"
+                    alt="iQOO Z7 5G">
+                <div class="card-body">
+                    <h3>iQOO Z7 5G</h3>
+                    <p class="price">₹15,999</p>
+                    <p>64MP OIS Camera | AMOLED Display</p>
+                    <button onclick="buyNow('iQOO Z7 5G', '₹15,999')">Buy Now</button>
+
+                </div>
+            </div>
+
+        </div>
+        <script>
+            let name="Aelcome all";
+                let result=name.substr(7,10);
+                let present=name.includes("all")
+                let indexx=name.indexOf("all")
+                let ascki=name.charCodeAt(0);
+                console.log(present);
+                console.log(indexx);
+                console.log(ascki);
+
+        </script>
+        <script>
+            function buyNow(productName, price) {
+                let imageUrl = '';
+                if (productName === 'Samsung Galaxy M14') {
+                    imageUrl = 'https://m.media-amazon.com/images/I/81ZSn2rk9WL._SX679_.jpg';
+                } else if (productName === 'Realme Narzo N55') {
+                    imageUrl = 'https://m.media-amazon.com/images/I/71dEY4Neo3L._SX679_.jpg';
+                } else if (productName === 'Redmi Note 12') {
+                    imageUrl = 'https://rukminim2.flixcart.com/image/832/832/xif0q/mobile/u/t/5/note-12-mzb0e2kin-redmi-original-imagz62rkfazphz2.jpeg?q=70&crop=false';
+                } else if (productName === 'iQOO Z7 5G') {
+                    imageUrl = 'https://m.media-amazon.com/images/I/41hmUyFtwdL._SX300_SY300_QL70_FMwebp_.jpg';
+                }
+
+                localStorage.setItem("selectedProduct", productName);
+                localStorage.setItem("selectedPrice", price);
+                localStorage.setItem("selectedImage", imageUrl);
+                window.location.href = "bill.html";
+
+                
+            }
+
+
+        </script>
+    </body>
+
+</html>
